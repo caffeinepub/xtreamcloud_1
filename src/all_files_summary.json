@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko canister managing hosting plans, accounts, and access control with functions to view plans, purchase plans, and retrieve user/account data.",
+  "feature_evidence.json": "Feature evidence report mapping features to implementation files, components, and test IDs with high‑level metadata.",
+  "frontend-file-summaries.txt": "Prewritten summaries describing the purpose of each frontend file including pages, hooks, stores, and utilities.",
+  "frontend/index.css": "Tailwind-based global stylesheet defining OKLCH color tokens and theme variables for light and dark modes.",
+  "frontend/index.html": "Basic HTML entry point that loads the React app via main.tsx and mounts it into the root div.",
+  "frontend/src/App.tsx": "Sets up TanStack Router routes, layout with header/footer, and handles user session/logout logic.",
+  "frontend/src/components/QRCode.tsx": "Canvas-based placeholder QR generator rendering a hash-based pattern with simple finder markers.",
+  "frontend/src/hooks/useActor.ts": "React Query hook that creates and manages the backend actor, reinitializing on identity changes and invalidating dependent queries.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and provider for Internet Identity authentication, managing identity loading, login, logout, and status states. Wraps Dfinity AuthClient with custom behavior and exposes a hook for consuming auth state.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching and mutating user profile and hosting plan data via an actor. Includes functions for saving a profile, purchasing plans, and retrieving purchased plans.",
+  "frontend/src/index.css": "Contains Tailwind base, component, and utility layers plus custom theme variables and UI styles. Adds Minecraft‑themed components, hero background, and global styling.",
+  "frontend/src/main.tsx": "Initializes React app, setting up QueryClientProvider and InternetIdentityProvider before rendering App. Imports global styles.",
+  "frontend/src/pages/AuthPage.tsx": "Handles login via Internet Identity and prompts users to set up a profile if none exists. Redirects authenticated users to the plans page and manages login/profile state.",
+  "frontend/src/pages/PanelPage.tsx": "Displays the hosting panel for authenticated users with plan details and simulated server metrics. Redirects users without identity or plan and shows loading or error states accordingly.",
+  "frontend/src/pages/PaymentPage.tsx": "Manages payment flow for a selected hosting plan, generating UPI payment data and confirming purchases via backend mutation. Redirects based on auth and plan state and finalizes payment completion.",
+  "frontend/src/pages/PlansPage.tsx": "Renders the plans selection page, enforces identity check, and lets users pick a plan to proceed to payment.",
+  "frontend/src/state/orderStore.ts": "Zustand store persisting selected plan and payment state with setters and a reset function.",
+  "frontend/src/utils/upi.ts": "Generates a UPI payment URL string based on a plan and payment method.",
+  "frontend/src/utils/urlParams.ts": "Helpers for reading, persisting, and clearing URL parameters using query strings, hashes, and sessionStorage.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme colors, animations, and plugins for the app's styling.",
+  "project_state.json": "JSON snapshot describing project requirements, completed features, and pending feature requests."
+}

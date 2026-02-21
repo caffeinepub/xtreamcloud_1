@@ -1,0 +1,191 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "XtreamCloud Minecraft-themed hosting frontend (auth, plans, UPI QR, panel)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create the XtreamCloud site shell, routing, and consistent Minecraft-inspired purple/black theme with prominent branding across pages.",
+      "acceptanceCriteria": [
+        "All pages use a consistent purple/black Minecraft-inspired visual style",
+        "The header/branding shows \"XtreamCloud\" clearly",
+        "All user-facing text is in English"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the application shell with a persistent header (prominent \"XtreamCloud\" branding), primary navigation links (Auth, Plans, Panel), and route outlet wiring. Use shadcn-ui components for consistent layout primitives and interactive elements; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "create",
+          "description": "Add client-side routing for Page A (Auth), Page B (Plans), Payment flow, and Page C (Panel), including default redirects that align with the requested user journey."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global styling entry point to implement the Minecraft-inspired purple/black palette, consistent typography/spacing, and reusable utility classes. Ensure all text styles remain readable in dark theme."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme tokens (colors/radii/shadows) to support the purple/black Minecraft-inspired look consistently across the app (without adding new global stylesheet paths)."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure the document title and metadata align with the XtreamCloud branding and the app remains English-only for user-facing text."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Page A authentication UI with Register/Login modes (ID + password), session detection, and an \"Already logged in?\" route-to-Plans action.",
+      "acceptanceCriteria": [
+        "User can register with ID + password and then log in with the same credentials",
+        "If the user is already authenticated, they are automatically routed to Page B (Plans) without needing to log in again",
+        "An \"Already logged in?\" button/link exists and routes to Page B when a session exists"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AuthPage.tsx",
+          "operation": "create",
+          "description": "Create Page A with two modes (Register/Login) using ID + password fields, clear English validation/error messages, and an \"Already logged in?\" control. Use shadcn-ui form components (e.g., inputs, buttons, tabs/cards) to keep styling consistent; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useLocalAuth.ts",
+          "operation": "create",
+          "description": "Implement a simple frontend session mechanism to support ID/password registration/login flows and session detection for automatic navigation (store minimal session state in browser storage; no secrets)."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Wire the Auth page route and add guards/redirects so that when an active session is detected, the user is automatically routed to Page B (Plans)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add navigation wiring and header controls that reflect auth state (e.g., show Auth vs. Plans/Panel access) and ensure the \"Already logged in?\" behavior can route to Plans when a session exists. Use shadcn-ui buttons/menus where applicable; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create Page B (Plans) showing the four specified plans with exact pricing/specs and ORDER NOW actions that start payment.",
+      "acceptanceCriteria": [
+        "Plans page shows all four plans with the exact names, prices, and specs",
+        "Each plan has an \"ORDER NOW\" button that initiates the payment step"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PlansPage.tsx",
+          "operation": "create",
+          "description": "Implement the Plans page UI listing HEXO (₹80/MONTH), METEOR (₹280/MONTH), DOOMSDAY (₹850/MONTH), XTREME (₹950/MONTH) with exact specs as provided and an \"ORDER NOW\" button per plan. Use shadcn-ui card/button components for consistent presentation; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/state/orderStore.ts",
+          "operation": "create",
+          "description": "Add lightweight client state (and persistence) to store the currently selected plan for the payment flow and subsequent Panel rendering."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register the Plans route and wire \"ORDER NOW\" navigation to the payment route while carrying the selected plan context."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement payment UI to select UPI app type and display QR code + UPI details for the chosen plan upon Pay.",
+      "acceptanceCriteria": [
+        "User can select one of: PhonePe, Google Pay, Paytm, UPI",
+        "Clicking Pay displays a QR code and UPI details (UPI ID / payment string) for the selected plan",
+        "The payment UI clearly indicates which plan is being paid for"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PaymentPage.tsx",
+          "operation": "create",
+          "description": "Create the payment page that shows the selected plan summary, allows choosing PhonePe/Google Pay/Paytm/UPI, and on Pay displays a QR code plus UPI payment details (UPI ID and payment string) in English. Use shadcn-ui radio/select/button/card components for consistent UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/upi.ts",
+          "operation": "create",
+          "description": "Add utilities to build a UPI payment string for the selected plan and chosen app label, and provide the data needed for QR rendering."
+        },
+        {
+          "path": "frontend/src/components/QrCode.tsx",
+          "operation": "create",
+          "description": "Add a reusable QR rendering component that can display a QR for the computed UPI payment string and gracefully handles invalid/empty data."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register the Payment route and ensure navigation from Plans and forward navigation to the Panel after the user indicates payment completion (per non-goal: no automatic verification)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create Page C (Hosting Panel) accessible after the payment flow, showing purchased plan resources and a process info section (simulated if needed).",
+      "acceptanceCriteria": [
+        "After completing the payment flow, the user is routed to the Hosting Panel (Page C)",
+        "Hosting Panel displays the selected plan and its allocated resources (RAM/CPU/SSD GB)",
+        "Hosting Panel includes a section labeled for process info (e.g., process status/summary) and displays data (even if simulated)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PanelPage.tsx",
+          "operation": "create",
+          "description": "Implement the Hosting Panel page to load the user's purchased plan (prefer querying backend capability when available, with a client-side fallback), display RAM/CPU/SSD allocation clearly, and show a labeled \"Process info\" section with simulated status/summary data. Use shadcn-ui components for consistent sections/cards/badges; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/usePurchasedPlan.ts",
+          "operation": "create",
+          "description": "Create a frontend hook to read the purchased plan for the current user context (using backend interface methods when present, and falling back to locally stored order state after payment completion)."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register the Panel route and add guard logic so it is only accessible after payment completion (based on persisted purchase state), otherwise redirect to Plans."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Include Minecraft-inspired static logo and hero background assets from frontend/public/assets/generated and render them in the UI (no backend image serving).",
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated and are used in the UI",
+        "The UI uses the logo in the header and the background in at least the landing/auth experience"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/xtreamcloud-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Minecraft-inspired pixel/block-style XtreamCloud logo as a static frontend asset at frontend/public/assets/generated/xtreamcloud-logo.dim_512x512.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/xtreamcloud-hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated Minecraft-inspired dark hero background as a static frontend asset at frontend/public/assets/generated/xtreamcloud-hero-bg.dim_1920x1080.png."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render the static logo asset from frontend/public/assets/generated/xtreamcloud-logo.dim_512x512.png prominently in the header and ensure page titles include \"XtreamCloud\". Use shadcn-ui layout components as needed; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/AuthPage.tsx",
+          "operation": "modify",
+          "description": "Apply the static hero background from frontend/public/assets/generated/xtreamcloud-hero-bg.dim_1920x1080.png to the Auth experience (landing/auth) while keeping text contrast accessible. Use shadcn-ui container/card components for readable overlay; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Wire global CSS to support the hero background usage and Minecraft-inspired styling motifs (blocky panels, subtle pixel-like borders) while maintaining the purple/black palette."
+        }
+      ]
+    }
+  ]
+}

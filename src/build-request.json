@@ -1,0 +1,167 @@
+{
+  "kind": "build_request",
+  "title": "XtreamCloud Minecraft-themed hosting site with login, plans, UPI payment QR, and post-payment hosting panel",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the XtreamCloud site shell and navigation with a Minecraft-inspired theme and a purple + black color palette, using consistent typography, spacing, and components across all pages. Ensure the product name \"XtreamCloud\" appears prominently in the header and page titles.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a Minecraft Hosting Web Name - XtreamCloud\nColor - Purple And Black\n\nTheme - Minecraft"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages use a consistent purple/black Minecraft-inspired visual style",
+        "The header/branding shows \"XtreamCloud\" clearly",
+        "All user-facing text is in English"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement an authentication page (Page A) with two modes: Register and Login using an ID (username/email) and Password. Include an \"Already logged in?\" button/link that, when clicked (or when an active session is detected), routes the user automatically to Page B (Plans).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make A Section Login Of Id PassWord  if u are already register So Make make a <button_Already Login?> When Login Go To AutoMatic Page B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can register with ID + password and then log in with the same credentials",
+        "If the user is already authenticated, they are automatically routed to Page B (Plans) without needing to log in again",
+        "An \"Already logged in?\" button/link exists and routes to Page B when a session exists"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add backend support for ID/password authentication with session handling (create account, login, logout, and a query to validate current session). Persist registered users and session data in the single Motoko actor.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make A Section Login Of Id PassWord"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes methods to register and log in with ID + password",
+        "Backend exposes a method to check whether the caller is authenticated",
+        "User data persists across refreshes/reloads (stable storage in the canister)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create Page B (Plans) listing the four plans (HEXO, METEOR, DOOMSDAY, XTREME) with the exact pricing and specs provided, each with an \"ORDER NOW\" button.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make Section B For Plans\n\nHEXO PLAN - ₹80/MONTH\n\n6 GB RAM \n200% CPU \n12 GB NVMe SSD\nBasic DDos Protection \n\n<button> ORDER NOW\n\nMETEOR PLAN - ₹280/MONTH\n\n12 GB RAM \n300% CPU\n24 GB NVMe SSD\nBasic DDos Protection \n\n<button> ORDER NOW \n\nDOOMSDAY PLAN - ₹850/MONTH\n\n32 GB RAM\nUnlimited CPU\n64 GB NVMe SSD\nBasic DDos Protection \n \n<button> ORDER NOW\n\nXTREME PLAN - ₹950/MONTH\n\n64 GB RAM \nUnlimited CPU\n96 GB NVMe SSD\nBASIC DDos Protection \n\n<BUTTON> ORDER NOW"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Plans page shows all four plans with the exact names, prices, and specs",
+        "Each plan has an \"ORDER NOW\" button that initiates the payment step"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement the payment UI for an order: allow choosing PhonePe, Google Pay, Paytm, or generic UPI; when the user clicks the Pay button, show a QR code and UPI payment details on-screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Payment - Phonepe,GooglePay,Paytm,UPI When SomeOne Click On Pay Button Show Qr And UPI"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can select one of: PhonePe, Google Pay, Paytm, UPI",
+        "Clicking Pay displays a QR code and UPI details (UPI ID / payment string) for the selected plan",
+        "The payment UI clearly indicates which plan is being paid for"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create Page C (Hosting Panel) that is accessible after payment completion and shows the user’s purchased plan plus hosting resource information: storage (GB), RAM, CPU, and process info.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make A Page C Of Panel",
+          "Make A Page For Panel When SomeOne Done Payment\nMake A Panel Of Hosting Where Show Gb And Ram CPU Process"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After completing the payment flow, the user is routed to the Hosting Panel (Page C)",
+        "Hosting Panel displays the selected plan and its allocated resources (RAM/CPU/SSD GB)",
+        "Hosting Panel includes a section labeled for process info (e.g., process status/summary) and displays data (even if simulated)"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add backend order tracking so that when a user places an order for a plan and completes the payment flow, the canister records the purchased plan for that authenticated user and the frontend can load it on Page C.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make A Page For Panel When SomeOne Done Payment"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores a user’s active plan selection after payment completion",
+        "Frontend can query the backend for the authenticated user’s current/active plan to render the Hosting Panel"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Generate and include Minecraft-inspired static branding assets (logo + background) and render them in the UI from frontend/public/assets/generated, without serving images via the backend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Theme - Minecraft",
+          "Color - Purple And Black"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated and are used in the UI",
+        "The UI uses the logo in the header and the background in at least the landing/auth experience"
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit files under frontend immutablePaths; compose and build around them.",
+    "All user-facing text must be English."
+  ],
+  "nonGoals": [
+    "No real payment gateway integration or automatic payment verification (only showing QR/UPI details and then proceeding based on user completion).",
+    "No third-party authentication providers (e.g., Google/Facebook/Auth0).",
+    "No real-time features (WebSockets/live server console)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minecraft-inspired pixel/block-style logo with the wordmark “XtreamCloud”, purple/black palette (xtreamcloud-logo.dim_512x512.png)",
+      "Minecraft-inspired banner/hero background featuring blocky terrain silhouettes and subtle purple lighting, dark/black base (xtreamcloud-hero-bg.dim_1920x1080.png)"
+    ],
+    "edits": []
+  }
+}

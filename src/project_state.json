@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a Minecraft-themed web app for XtreamCloud (purple/black) with login, plan selection, UPI payments (QR/UPI ID), and a post-payment hosting panel showing resource usage.",
+  "existing_features": [
+    {
+      "id": "feature-create-the-xtreamcloud-site-shell-and-navigation-with-a-minecraft-inspired-theme-and-a-purple-black-color-palette-using-consistent-typography-spacing-and-components-across-all-pages-ensure-the-product-name-xtreamcloud-appears-prominently-in-the-header-and-page-titles",
+      "title": "Create the XtreamCloud site shell and navigation with a Minecraft-inspired theme and a purple + black color palette, using consistent typography, spacing, and components across all pages. Ensure the product name \"XtreamCloud\" appears prominently in the header and page titles.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-authentication-page-page-a-with-two-modes-register-and-login-using-an-id-username-email-and-password-include-an-already-logged-in-button-link-that-when-clicked-or-when-an-active-session-is-detected-routes-the-user-automatically-to-page-b-plans",
+      "title": "Implement an authentication page (Page A) with two modes: Register and Login using an ID (username/email) and Password. Include an \"Already logged in?\" button/link that, when clicked (or when an active session is detected), routes the user automatically to Page B (Plans).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-page-b-plans-listing-the-four-plans-hexo-meteor-doomsday-xtreme-with-the-exact-pricing-and-specs-provided-each-with-an-order-now-button",
+      "title": "Create Page B (Plans) listing the four plans (HEXO, METEOR, DOOMSDAY, XTREME) with the exact pricing and specs provided, each with an \"ORDER NOW\" button.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-payment-ui-for-an-order-allow-choosing-phonepe-google-pay-paytm-or-generic-upi-when-the-user-clicks-the-pay-button-show-a-qr-code-and-upi-payment-details-on-screen",
+      "title": "Implement the payment UI for an order: allow choosing PhonePe, Google Pay, Paytm, or generic UPI; when the user clicks the Pay button, show a QR code and UPI payment details on-screen.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-page-c-hosting-panel-that-is-accessible-after-payment-completion-and-shows-the-user-s-purchased-plan-plus-hosting-resource-information-storage-gb-ram-cpu-and-process-info",
+      "title": "Create Page C (Hosting Panel) that is accessible after payment completion and shows the user’s purchased plan plus hosting resource information: storage (GB), RAM, CPU, and process info.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-minecraft-inspired-static-branding-assets-logo-background-and-render-them-in-the-ui-from-frontend-public-assets-generated-without-serving-images-via-the-backend",
+      "title": "Generate and include Minecraft-inspired static branding assets (logo + background) and render them in the UI from frontend/public/assets/generated, without serving images via the backend.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create XtreamCloud Minecraft-themed site branding (name XtreamCloud, purple/black color scheme)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement Login section with ID/Password and an 'Already Login?' button that routes logged-in users to Page B automatically",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create Page B: Plans section listing HEXO/METEOR/DOOMSDAY/XTREME plans with specs and ORDER NOW buttons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add payment methods (PhonePe, Google Pay, Paytm, UPI); on Pay click show QR code and UPI details",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Page C: Hosting panel page shown after successful payment",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Hosting panel UI should display allocated resources/usage: GB (storage), RAM, CPU, and process info",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add backend support for ID/password authentication with session handling (create account, login, logout, and a query to validate current session). Persist registered users and session data in the single Motoko actor.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add backend order tracking so that when a user places an order for a plan and completes the payment flow, the canister records the purchased plan for that authenticated user and the frontend can load it on Page C.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "App uses multi-page flow: Login (Page A) -> Plans (Page B) -> Payment -> Hosting Panel (Page C).",
+    "Post-payment flow should gate access to the hosting panel until payment is completed/confirmed."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minecraft-inspired pixel/block-style logo with the wordmark “XtreamCloud”, purple/black palette (xtreamcloud-logo.dim_512x512.png)\n- Minecraft-inspired banner/hero background featuring blocky terrain silhouettes and subtle purple lighting, dark/black base (xtreamcloud-hero-bg.dim_1920x1080.png)",
+  "generatedImages": [
+    {
+      "filename": "xtreamcloud-logo.dim_512x512.png",
+      "description": "Minecraft-inspired pixel/block-style logo with the wordmark “XtreamCloud”, purple/black palette",
+      "targetWidth": 512,
+      "targetHeight": 512
+    },
+    {
+      "filename": "xtreamcloud-hero-bg.dim_1920x1080.png",
+      "description": "Minecraft-inspired banner/hero background featuring blocky terrain silhouettes and subtle purple lighting, dark/black base",
+      "targetWidth": 1920,
+      "targetHeight": 1080
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "XtreamCloud",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

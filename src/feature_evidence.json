@@ -1,0 +1,127 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-xtreamcloud-site-shell-and-navigation-with-a-minecraft-inspired-theme-and-a-purple-black-color-palette-using-consistent-typography-spacing-and-components-across-all-pages-ensure-the-product-name-xtreamcloud-appears-prominently-in-the-header-and-page-titles",
+      "featureTitle": "Create the XtreamCloud site shell and navigation with a Minecraft-inspired theme and a purple + black color palette, using consistent typography, spacing, and components across all pages. Ensure the product name \"XtreamCloud\" appears prominently in the header and page titles.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-authentication-page-page-a-with-two-modes-register-and-login-using-an-id-username-email-and-password-include-an-already-logged-in-button-link-that-when-clicked-or-when-an-active-session-is-detected-routes-the-user-automatically-to-page-b-plans",
+      "featureTitle": "Implement an authentication page (Page A) with two modes: Register and Login using an ID (username/email) and Password. Include an \"Already logged in?\" button/link that, when clicked (or when an active session is detected), routes the user automatically to Page B (Plans).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/AuthPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-page-b-plans-listing-the-four-plans-hexo-meteor-doomsday-xtreme-with-the-exact-pricing-and-specs-provided-each-with-an-order-now-button",
+      "featureTitle": "Create Page B (Plans) listing the four plans (HEXO, METEOR, DOOMSDAY, XTREME) with the exact pricing and specs provided, each with an \"ORDER NOW\" button.",
+      "files": [
+        "frontend/src/pages/PlansPage.tsx",
+        "frontend/src/state/orderStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-payment-ui-for-an-order-allow-choosing-phonepe-google-pay-paytm-or-generic-upi-when-the-user-clicks-the-pay-button-show-a-qr-code-and-upi-payment-details-on-screen",
+      "featureTitle": "Implement the payment UI for an order: allow choosing PhonePe, Google Pay, Paytm, or generic UPI; when the user clicks the Pay button, show a QR code and UPI payment details on-screen.",
+      "files": [
+        "frontend/src/pages/PaymentPage.tsx",
+        "frontend/src/utils/upi.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-page-c-hosting-panel-that-is-accessible-after-payment-completion-and-shows-the-user-s-purchased-plan-plus-hosting-resource-information-storage-gb-ram-cpu-and-process-info",
+      "featureTitle": "Create Page C (Hosting Panel) that is accessible after payment completion and shows the user’s purchased plan plus hosting resource information: storage (GB), RAM, CPU, and process info.",
+      "files": [
+        "frontend/src/pages/PanelPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-minecraft-inspired-static-branding-assets-logo-background-and-render-them-in-the-ui-from-frontend-public-assets-generated-without-serving-images-via-the-backend",
+      "featureTitle": "Generate and include Minecraft-inspired static branding assets (logo + background) and render them in the UI from frontend/public/assets/generated, without serving images via the backend.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/AuthPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-04T14:46:32.600Z",
+  "summary": "Core frontend pages (Auth/Plans/Payment/Panel) and Minecraft-themed purple/black styling were added, along with a UPI/QR payment UI and a hosting panel. However, the requested ID+password authentication with backend session handling and stable persistence is not implemented; instead, the diff uses Internet Identity and an authorization/admin-token system. Backend persistence (stable storage) is not evidenced, and generated static branding assets are referenced but not evidenced as added under the required public assets path.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Authentication page with two modes: Register and Login using an ID (username/email) and Password; include an \"Already logged in?\" link that routes to Plans when a session exists; auto-route to Plans when authenticated.",
+      "reason": "AuthPage uses Internet Identity flow (via useInternetIdentity) and a profile-name setup, not ID/password Register+Login. No evidence of ID/password fields or an \"Already logged in?\" control tied to a backend session.",
+      "evidence": [
+        "frontend/src/pages/AuthPage.tsx (truncated)",
+        "frontend/src/hooks/useInternetIdentity.ts (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Backend support for ID/password authentication with session handling (register, login, logout, validate session) persisted in stable storage within backend/main.mo.",
+      "reason": "backend/main.mo shows access-control/permission checks and per-Principal accounts, but no methods for register/login/logout with ID+password, no session validation endpoint, and no evidence of stable variables for persistence across upgrades/reloads.",
+      "evidence": [
+        "backend/main.mo (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Backend order tracking: after payment completion, store purchased plan for the authenticated user and allow frontend to query the active plan on Page C.",
+      "reason": "Although purchasePlan/getPurchasedPlan exist, they are guarded by an authorization permission system rather than the requested ID/password session auth, and persistence across reloads/upgrades is not evidenced (no stable storage shown).",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/PaymentPage.tsx (truncated)",
+        "frontend/src/pages/PanelPage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Generate and include Minecraft-inspired static branding assets (logo + hero background) under frontend/public/assets/generated and use them in the UI (not served by backend).",
+      "reason": "UI references the required asset paths, but the diff summary does not show the actual image files being added under frontend/public/assets/generated (an omitted added file is mentioned, but its path/content is not evidenced).",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "File diff summary: \"Omitted files due to limits: added=1\""
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity-based authentication flow (AuthClient/DelegationIdentity) instead of ID/password auth.",
+      "reason": "BuildRequest explicitly asks for ID/password auth and forbids third-party auth providers; diff implements Internet Identity login infrastructure.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts (truncated)",
+        "frontend/src/pages/AuthPage.tsx (truncated)",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Admin-token/authorization permission system with _initializeAccessControlWithSecret and admin-only getAllAccounts endpoint.",
+      "reason": "Not requested by any REQ; requirements only mention user ID/password auth, session validation, and per-user plan tracking.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "backend/main.mo (truncated)",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "description": "Footer attribution link to caffeine.ai and inclusion of a heart symbol in user-facing footer.",
+      "reason": "Not requested by the BuildRequest (and adds extra user-facing content beyond specified pages/features).",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Backend hosting plan catalog unrelated to the required four Minecraft plans (HEXO/METEOR/DOOMSDAY/XTREME).",
+      "reason": "Requirements only specify the four plans on the frontend; backend adds domain/shared/vps/dedicated structures and packages not requested.",
+      "evidence": [
+        "backend/main.mo (truncated)"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/QRCode.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AuthPage.tsx",
+    "frontend/src/pages/PanelPage.tsx",
+    "frontend/src/pages/PaymentPage.tsx",
+    "frontend/src/pages/PlansPage.tsx",
+    "frontend/src/state/orderStore.ts",
+    "frontend/src/utils/upi.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

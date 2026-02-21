@@ -1,0 +1,13 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, layout with header/footer, and navigation between Auth, Plans, Payment, and Panel pages with Minecraft-themed branding.",
+  "frontend/src/pages/AuthPage.tsx": "Authentication page with Internet Identity login/register tabs, user profile setup flow, and automatic redirect to Plans page after successful authentication.",
+  "frontend/src/pages/PlansPage.tsx": "Plans selection page displaying four hosting tiers (HEXO, METEOR, DOOMSDAY, XTREME) with pricing, specs, and ORDER NOW buttons in Minecraft-themed cards.",
+  "frontend/src/pages/PaymentPage.tsx": "Payment page with UPI payment method selection (PhonePe, Google Pay, Paytm, UPI), QR code display, and payment confirmation flow that saves the purchase to backend.",
+  "frontend/src/pages/PanelPage.tsx": "Hosting control panel showing purchased plan details, real-time resource usage (RAM, CPU, Storage) with progress bars, server status, and active process information.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management and plan purchase/retrieval with proper cache invalidation.",
+  "frontend/src/state/orderStore.ts": "Zustand store with persistence for managing selected plan and payment completion state across the order flow.",
+  "frontend/src/utils/upi.ts": "Utility function to generate UPI payment strings with proper formatting for Indian payment apps.",
+  "frontend/src/components/QRCode.tsx": "Canvas-based QR code component that renders a visual pattern for UPI payment strings (simplified implementation for display purposes).",
+  "frontend/src/index.css": "Global styles with purple/black Minecraft-themed OKLCH color system, custom component classes for cards/buttons/text with proper CSS syntax, and hero background styling.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with purple-themed color tokens, custom shadows, and Minecraft-inspired design utilities."
+}
